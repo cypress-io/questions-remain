@@ -2,9 +2,11 @@
 
 /* global describe, it */
 const questionsRemain = require('.')
+const la = require('lazy-ass')
+const is = require('check-more-types')
 
 describe('@cypress/questions-remain', () => {
-  it('write this test', () => {
-    console.assert(questionsRemain, 'should export something')
+  it('is a function', () => {
+    la(is.fn(questionsRemain))
   })
 })
