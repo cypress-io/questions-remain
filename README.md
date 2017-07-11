@@ -8,6 +8,13 @@
 [![semantic-release][semantic-image] ][semantic-url]
 [![js-standard-style][standard-image]][standard-url]
 
+## Motivation
+
+Imagine user can supply some options via CLI arguments, but your application
+need more. For each remaining unspecified option, this module will call your
+Promise-returning function, filling the blanks and finally resolving with
+all options set.
+
 ## Install
 
 Requires [Node](https://nodejs.org/en/) version 6 or above.
@@ -17,6 +24,31 @@ npm install --save @cypress/questions-remain
 ```
 
 ## Use
+
+Two-step use. First give it a mapping of "property" (or "option") names to
+Promise-returning functions to call if the option is not set. Then call
+with options collected from CLI.
+
+```js
+// askUsername and askEmail are your functions
+const propertiesToQuestions = {
+  username: askUsername,
+  email: askEmail
+}
+const questionsRemain = require('@cypress/questions-remain')
+const ask = questionsRemain(propertiesToQuestions)
+// imagine parsing CLI options
+const argv = require('minimist')(process.argv.slice(2))
+ask(argv)
+  .then(options => {
+    // options.username and options.email
+    // should be there!
+  })
+```
+
+The above program can work right away without any prompts if the user calls
+it with `app --username john --email john@gmail.com`, or it will ask questions
+if `username` or `email` is missing.
 
 ### Small print
 
