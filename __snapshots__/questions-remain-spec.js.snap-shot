@@ -3,3 +3,8 @@ exports['returns object if all questions have been answered 1'] = {
   "bar": "so is bar"
 }
 
+exports['asks questions for missing options 1'] = {
+  "foo": "foo is specified",
+  "bar": "bar user answer"
+}
+
