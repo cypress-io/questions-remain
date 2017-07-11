@@ -3,13 +3,14 @@ cache:
   directories:
     - node_modules
 notifications:
-  email: false
+  email: true
 node_js:
-  - '7'
   - '6'
-  - '4'
 before_script:
   - npm prune
+script:
+  - node .
+  - npm test
 after_success:
   - npm run semantic-release
 branches:

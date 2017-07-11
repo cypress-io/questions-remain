@@ -1,0 +1,5 @@
+exports['returns object if all questions have been answered 1'] = {
+  "foo": "foo is specified",
+  "bar": "so is bar"
+}
+
